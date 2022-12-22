@@ -1,11 +1,11 @@
-import { useState } from 'react'
-
+import React from 'react'
+import Button from '@mui/material/Button';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import Navbar from './components/Navbar/Navbar';
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div>
-        asd
+        <Navbar/>
     </div>
   )
 }
