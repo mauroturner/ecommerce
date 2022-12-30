@@ -113,8 +113,8 @@ svg {
 body {
   min-height: 100vh;
   font-size: 100%;
-  font-family: var(--tipo-principal);
-  color: var(--negro);
+  background-color: #F6F9FC;
+  color: #2B3445;
   hyphens: auto;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
