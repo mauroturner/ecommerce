@@ -15,6 +15,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import CartWidget from "../CartWidget/CartWidget";
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -171,14 +172,7 @@ const Navbar = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: "none", sm: "block" } }}
-                    >
-                        E-commerce
-                    </Typography>
+                    <CartWidget/>
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
