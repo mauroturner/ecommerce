@@ -1,5 +1,6 @@
 import React from "react";
 import { styled, alpha } from "@mui/material/styles";
+import Container from '@mui/material/Container';
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,6 +17,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import CartWidget from "../CartWidget/CartWidget";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -81,6 +84,12 @@ const Navbar = () => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
+    const [value, setValue] = React.useState('one');
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     const menuId = "primary-search-account-menu";
     const renderMenu = (
         <Menu
@@ -126,35 +135,11 @@ const Navbar = () => {
                     aria-label="show 4 new mails"
                     color="inherit"
                 >
-                    <Badge badgeContent={4} color="error">
+                    <Badge badgeContent={0} color="error">
                         <ShoppingCartIcon />
                     </Badge>
                 </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Perfil</p>
+                <p>Ir al carrito</p>
             </MenuItem>
         </Menu>
     );
@@ -162,71 +147,64 @@ const Navbar = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <CartWidget/>
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Buscar"
-                            inputProps={{ "aria-label": "search" }}
-                        />
-                    </Search>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                        <IconButton
+                <Container maxWidth="lg">
+                    <Toolbar>
+                        {/* <IconButton
                             size="large"
-                            aria-label="show 4 new mails"
+                            edge="start"
                             color="inherit"
+                            aria-label="open drawer"
+                            sx={{ mr: 2 }}
                         >
-                            <Badge badgeContent={4} color="error">
-                                <ShoppingCartIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: "flex", md: "none" } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </Box>
-                </Toolbar>
+                            <MenuIcon />
+                        </IconButton> */}
+                        <CartWidget />
+                        <Search>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Buscar"
+                                inputProps={{ "aria-label": "search" }}
+                            />
+                        </Search>
+                        <Box sx={{ flexGrow: 1 }} />
+                        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                            <Tabs
+                                value={value}
+                                onChange={handleChange}
+                                textColor="inherit"
+                                indicatorColor="secondary"
+                                aria-label="secondary tabs example"
+                            >
+                                <Tab value="one" label="PROCESADORES" />
+                                <Tab value="two" label="PLACAS MADRE" />
+                                <Tab value="three" label="PLACAS DE VIDEO" />
+                            </Tabs>
+                            <IconButton
+                                size="large"
+                                aria-label="show 0 new notifications"
+                                color="inherit"
+                            >
+                                <Badge badgeContent={0} color="error">
+                                    <ShoppingCartIcon />
+                                </Badge>
+                            </IconButton>
+                        </Box>
+                        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="show more"
+                                aria-controls={mobileMenuId}
+                                aria-haspopup="true"
+                                onClick={handleMobileMenuOpen}
+                                color="inherit"
+                            >
+                                <MoreIcon />
+                            </IconButton>
+                        </Box>
+                    </Toolbar>
+                </Container>
             </AppBar>
             {renderMobileMenu}
             {renderMenu}

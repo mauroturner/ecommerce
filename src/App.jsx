@@ -6,13 +6,13 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 
 function App() {
   return (
-    <>
-        <Navbar/>
-        <main>
-          <ItemListContainer titulo={'Ofertas'}/>
-        </main>
-    </>
-  )
+      <>
+          <Navbar />
+          <main>
+              <ItemListContainer titulo={"Ofertas"} />
+          </main>
+      </>
+  );
 }
 
 export default App
