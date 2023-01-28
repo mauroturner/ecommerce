@@ -19,6 +19,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import CartWidget from "../CartWidget/CartWidget";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { NavLink } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -158,7 +159,9 @@ const Navbar = () => {
                         >
                             <MenuIcon />
                         </IconButton> */}
-                        <CartWidget />
+                        <NavLink to='/'>
+                            <CartWidget />
+                        </NavLink>
                         <Search>
                             <SearchIconWrapper>
                                 <SearchIcon />
@@ -177,19 +180,21 @@ const Navbar = () => {
                                 indicatorColor="secondary"
                                 aria-label="secondary tabs example"
                             >
-                                <Tab value="one" label="PROCESADORES" />
-                                <Tab value="two" label="PLACAS MADRE" />
-                                <Tab value="three" label="PLACAS DE VIDEO" />
+                                <NavLink to='/categoria/1'><Tab value="one" label="PROCESADORES" /></NavLink>                                
+                                <NavLink to='/categoria/2'><Tab value="two" label="PLACAS MADRE" /></NavLink>
+                                <NavLink to='/categoria/3'><Tab value="three" label="PLACAS DE VIDEO" /></NavLink>
                             </Tabs>
-                            <IconButton
-                                size="large"
-                                aria-label="show 0 new notifications"
-                                color="inherit"
-                            >
-                                <Badge badgeContent={0} color="error">
-                                    <ShoppingCartIcon />
-                                </Badge>
-                            </IconButton>
+                            <NavLink to='/cart'>
+                                <IconButton
+                                    size="large"
+                                    aria-label="show 0 new notifications"
+                                    color="inherit"
+                                >
+                                    <Badge badgeContent={0} color="error">
+                                        <ShoppingCartIcon />
+                                    </Badge>
+                                </IconButton>
+                            </NavLink>
                         </Box>
                         <Box sx={{ display: { xs: "flex", md: "none" } }}>
                             <IconButton

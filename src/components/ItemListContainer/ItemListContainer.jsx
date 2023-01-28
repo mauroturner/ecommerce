@@ -12,6 +12,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 
 const ItemListContainer = ({titulo}) => {
     const [productos, setProductos] = useState([]);
@@ -26,6 +27,9 @@ const ItemListContainer = ({titulo}) => {
     return (
         <>
             <Container maxWidth="lg">
+                <Typography variant="h2" component="h2">
+                    {titulo}
+                </Typography>
                 <Grid
                     container
                     rowSpacing={1}
@@ -63,9 +67,11 @@ const ItemListContainer = ({titulo}) => {
                                         </CardContent>
                                         <CardActions>
                                             <Button size="small">Añadir</Button>
-                                            <Button size="small">
-                                                Ver más
-                                            </Button>
+                                            <Link to={'/item/' + producto.id}>
+                                                <Button size="small">
+                                                    Ver más
+                                                </Button>
+                                            </Link>
                                         </CardActions>
                                     </Card>
                                 </Grid>
@@ -73,9 +79,6 @@ const ItemListContainer = ({titulo}) => {
                         ))
                     )}
                 </Grid>
-                <Typography variant="h2" component="h2">
-                    {titulo}
-                </Typography>
             </Container>
         </>
     );
