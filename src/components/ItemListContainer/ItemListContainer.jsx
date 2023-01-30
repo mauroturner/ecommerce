@@ -15,12 +15,8 @@ const ItemListContainer = ({titulo}) => {
     const { categoriaId } = useParams();
 
     useEffect(() => {
-        gFetch()
-            .then(res => setProductos(
-                (categoriaId.length > 0) ?
-                    res.filter(items => items.categoria === categoriaId.replaceAll('-', ' ')):
-                    res
-            ))
+        gFetch({categoria: categoriaId})
+            .then(res => setProductos(res))
             .catch(err => console.log(err))
             .finally(() => setLoading(false));
     }, [categoriaId]);

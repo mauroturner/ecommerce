@@ -1,6 +1,6 @@
 let productos = [
     {
-        id         : 1,
+        id         : '1',
         categoria  : 'procesadores',
         titulo     : 'Procesador Intel Celeron G4900 3.10GHz 1151 9th Gen OEM',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -8,7 +8,7 @@ let productos = [
         precio     : 11450
     },
     {
-        id         : 2,
+        id         : '2',
         categoria  : 'procesadores',
         titulo     : 'Procesador Intel Celeron G5925 3.6GHz Socket 1200',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -16,7 +16,7 @@ let productos = [
         precio     : 12900
     },
     {
-        id         : 3,
+        id         : '3',
         categoria  : 'procesadores',
         titulo     : 'Procesador Intel Celeron G6900 S1700 12th Gen',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -24,7 +24,7 @@ let productos = [
         precio     : 16500
     },
     {
-        id         : 4,
+        id         : '4',
         categoria  : 'placas madre',
         titulo     : 'Mother Asrock B360M BULK WIFI',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -32,7 +32,7 @@ let productos = [
         precio     : 7350 
     },
     {
-        id         : 5,
+        id         : '5',
         categoria  : 'placas madre',
         titulo     : 'Mother Asrock B365M BULK',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -40,7 +40,7 @@ let productos = [
         precio     : 7450
     },
     {
-        id         : 6,
+        id         : '6',
         categoria  : 'placas madre',
         titulo     : 'Mother ASUS PRIME H310M-R R2.0 1151 OEM',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -48,7 +48,7 @@ let productos = [
         precio     : 12700
     },
     {
-        id         : 7,
+        id         : '7',
         categoria  : 'placas de video',
         titulo     : 'Placa de Video GeForce MSI G210 1GB DDR3 Low Profile',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -56,7 +56,7 @@ let productos = [
         precio     : 13650 
     },
     {
-        id         : 8,
+        id         : '8',
         categoria  : 'placas de video',
         titulo     : 'Placa de Video GALAX GeForce RTX 3050 8GB GDDR6',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -64,7 +64,7 @@ let productos = [
         precio     : 146000
     },
     {
-        id         : 9,
+        id         : '9',
         categoria  : 'placas de video',
         titulo     : 'Placa de Video Zotac GeForce RTX 3070 Ti 8GB GDDR6X Trinity',
         descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue justo quis sodales viverra. Nullam ultricies lobortis pharetra. Nullam lorem erat, congue non arcu et, elementum feugiat quam. Etiam varius tincidunt tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
@@ -73,10 +73,15 @@ let productos = [
     }
 ];
 
-export const gFetch = () =>{
+export const gFetch = ({id, categoria = ''}) =>{
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(productos);
+            let resultado = productos;
+            categoria = categoria.replaceAll('-', ' ');
+            (categoria) ? resultado = productos.filter(producto => producto.categoria === categoria) : null;
+            (id)        ? resultado = productos.find(producto   => producto.id        === id)        : null;
+            resolve(resultado);
+            // resolve(id ? productos.find(producto => producto.id === id) : productos);
         }, 100);
     });
 };
