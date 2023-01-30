@@ -159,7 +159,7 @@ const Navbar = () => {
                         >
                             <MenuIcon />
                         </IconButton> */}
-                        <NavLink to='/'>
+                        <NavLink to='/ecommerce/'>
                             <CartWidget />
                         </NavLink>
                         <Search>
@@ -180,11 +180,11 @@ const Navbar = () => {
                                 indicatorColor="secondary"
                                 aria-label="secondary tabs example"
                             >
-                                <NavLink to='/categoria/1'><Tab value="one" label="PROCESADORES" /></NavLink>                                
-                                <NavLink to='/categoria/2'><Tab value="two" label="PLACAS MADRE" /></NavLink>
-                                <NavLink to='/categoria/3'><Tab value="three" label="PLACAS DE VIDEO" /></NavLink>
+                                <Tab value="one" label="PROCESADORES" component={NavLink} to="/ecommerce/category/procesadores"/>                                
+                                <Tab value="two" label="PLACAS MADRE" component={NavLink} to='/ecommerce/category/placas-madre'/>
+                                <Tab value="three" label="PLACAS DE VIDEO" component={NavLink} to='/ecommerce/category/placas-de-video'/>
                             </Tabs>
-                            <NavLink to='/cart'>
+                            <NavLink to='/ecommerce/cart'>
                                 <IconButton
                                     size="large"
                                     aria-label="show 0 new notifications"

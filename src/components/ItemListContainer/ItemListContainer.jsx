@@ -12,18 +12,29 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ItemListContainer = ({titulo}) => {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        gFetch()
-            .then(res => setProductos(res))
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false));
-    }, []);
+    const { categoriaId } = useParams();
 
+    useEffect(() => {
+        console.log(categoriaId);
+        if(categoriaId){
+            gFetch()
+                .then(res => setProductos(res.filter(items => items.categoria === categoriaId.replaceAll('-', ' '))))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false));
+                console.log('cat');
+        }else{
+            gFetch()
+                .then(res => setProductos(res))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false));
+                console.log('nada');
+        }
+    }, []);
     return (
         <>
             <Container maxWidth="lg">
@@ -67,7 +78,7 @@ const ItemListContainer = ({titulo}) => {
                                         </CardContent>
                                         <CardActions>
                                             <Button size="small">Añadir</Button>
-                                            <Link to={'/item/' + producto.id}>
+                                            <Link to={'/ecommerce/item/' + producto.id}>
                                                 <Button size="small">
                                                     Ver más
                                                 </Button>

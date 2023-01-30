@@ -77,6 +77,6 @@ export const gFetch = () =>{
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(productos);
-        }, 500);
+        }, 100);
     });
 };
