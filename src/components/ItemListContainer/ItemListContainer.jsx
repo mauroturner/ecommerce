@@ -4,14 +4,9 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2'
 import Typography from "@mui/material/Typography";
 import { gFetch } from '../../helpers/gFetch';
 import { useState, useEffect } from 'react';
-import { light } from '@mui/material/styles/createPalette';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+import ItemList from '../ItemList/ItemList';
 import { Link, useParams } from "react-router-dom";
 
 const ItemListContainer = ({titulo}) => {
@@ -20,21 +15,15 @@ const ItemListContainer = ({titulo}) => {
     const { categoriaId } = useParams();
 
     useEffect(() => {
-        console.log(categoriaId);
-        if(categoriaId){
-            gFetch()
-                .then(res => setProductos(res.filter(items => items.categoria === categoriaId.replaceAll('-', ' '))))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false));
-                console.log('cat');
-        }else{
-            gFetch()
-                .then(res => setProductos(res))
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false));
-                console.log('nada');
-        }
-    }, []);
+        gFetch()
+            .then(res => setProductos(
+                (categoriaId.length > 0) ?
+                    res.filter(items => items.categoria === categoriaId.replaceAll('-', ' ')):
+                    res
+            ))
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false));
+    }, [categoriaId]);
     return (
         <>
             <Container maxWidth="lg">
@@ -51,43 +40,7 @@ const ItemListContainer = ({titulo}) => {
                             <CircularProgress />
                         </Box>
                     ) : (
-                        productos.map((producto) => (
-                            <div key={producto.id}>
-                                <Grid>
-                                    <Card sx={{ maxWidth: 345 }}>
-                                        <CardMedia
-                                            component="img"
-                                            alt="green iguana"
-                                            height="140"
-                                            image={producto.imagen}
-                                        />
-                                        <CardContent>
-                                            <Typography
-                                                gutterBottom
-                                                variant="h5"
-                                                component="div"
-                                            >
-                                                {producto.titulo}
-                                            </Typography>
-                                            <Typography
-                                                variant="body2"
-                                                color="text.secondary"
-                                            >
-                                                {producto.descripcion}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <Button size="small">Añadir</Button>
-                                            <Link to={'/ecommerce/item/' + producto.id}>
-                                                <Button size="small">
-                                                    Ver más
-                                                </Button>
-                                            </Link>
-                                        </CardActions>
-                                    </Card>
-                                </Grid>
-                            </div>
-                        ))
+                        <ItemList productos={productos}/>
                     )}
                 </Grid>
             </Container>

@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
-    const {obj} = useParams();
+    const {itemId} = useParams();
+    console.log(itemId);
     return <div>ItemDetailContainer</div>;
 }
 
