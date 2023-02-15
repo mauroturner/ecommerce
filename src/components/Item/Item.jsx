@@ -27,7 +27,6 @@ const Item = ({ producto }) => {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Añadir</Button>
                         <Link to={"/ecommerce/item/" + producto.id}>
                             <Button size="small">Ver más</Button>
                         </Link>

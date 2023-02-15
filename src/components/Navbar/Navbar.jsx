@@ -130,7 +130,8 @@ const Navbar = () => {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            
+            <MenuItem component={NavLink} to="/ecommerce/cart">
                 <IconButton
                     size="large"
                     aria-label="show 4 new mails"
@@ -141,6 +142,7 @@ const Navbar = () => {
                     </Badge>
                 </IconButton>
                 <p>Ir al carrito</p>
+                
             </MenuItem>
         </Menu>
     );
@@ -162,15 +164,6 @@ const Navbar = () => {
                         <NavLink to='/ecommerce/'>
                             <CartWidget />
                         </NavLink>
-                        <Search>
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Buscar"
-                                inputProps={{ "aria-label": "search" }}
-                            />
-                        </Search>
                         <Box sx={{ flexGrow: 1 }} />
                         <Box sx={{ display: { xs: "none", md: "flex" } }}>
                             <Tabs

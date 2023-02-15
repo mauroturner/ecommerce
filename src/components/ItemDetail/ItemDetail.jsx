@@ -3,14 +3,21 @@ import Typography from "@mui/material/Typography";
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import ItemCount from '../ItemCount/ItemCount';
+import { useContext } from 'react';
+import { useCartContext } from '../../context/CartContext';
 
 const ItemDetail = ({ producto }) => {
+    const { agregarCarrito } = useCartContext();
+    const onAdd = (cantidad) => {
+        agregarCarrito({...producto, cantidad });
+    }
     return (
         <>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={8}>
                 <img src={producto.imagen} alt={producto.titulo} />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} md={4}>
                 <Box
                     sx={{
                         width: "100%",
@@ -49,7 +56,7 @@ const ItemDetail = ({ producto }) => {
                     </Box>
                     <Divider variant="middle" />
                     <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
-                        <Button>Agregar al carrito</Button>
+                        <ItemCount onAdd={onAdd}/>
                     </Box>
                 </Box>
             </Grid>
